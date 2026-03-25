@@ -1,0 +1,103 @@
+{
+  "nodes": {
+    "fabric-cli": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1771852784,
+        "narHash": "sha256-uZqQdjzEhv9VbuP7CXgptYYGznymVG3zWScxfKQsdc0=",
+        "owner": "MattiDragon",
+        "repo": "fabric-cli-flake",
+        "rev": "a37735cde71ae92c070681f34820d161e713922c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MattiDragon",
+        "repo": "fabric-cli-flake",
+        "type": "github"
+      }
+    },
+    "minegrub-world-sel-theme": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1770377501,
+        "narHash": "sha256-pNRReDfR36MZd3X/zsT+qNzGtLvmg41mgjdiM/Rxtd8=",
+        "owner": "Lxtharia",
+        "repo": "minegrub-world-sel-theme",
+        "rev": "0527bf0bdd0bcad46f228e35ee6cf133cb436aec",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Lxtharia",
+        "repo": "minegrub-world-sel-theme",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1771369470,
+        "narHash": "sha256-0NBlEBKkN3lufyvFegY4TYv5mCNHbi5OmBDrzihbBMQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "0182a361324364ae3f436a63005877674cf45efb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "fabric-cli": "fabric-cli",
+        "minegrub-world-sel-theme": "minegrub-world-sel-theme",
+        "nixpkgs": "nixpkgs",
+        "vineflower": "vineflower"
+      }
+    },
+    "vineflower": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "vineflower_jar": "vineflower_jar"
+      },
+      "locked": {
+        "lastModified": 1771852920,
+        "narHash": "sha256-kRiAf/Dyn+SNe16zxOF9mh9G/zDiBlEMZIJoyx4KPdk=",
+        "owner": "MattiDragon",
+        "repo": "vineflower-flake",
+        "rev": "df7471992ec45748ec15d00a4e350343e2346ca1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MattiDragon",
+        "repo": "vineflower-flake",
+        "type": "github"
+      }
+    },
+    "vineflower_jar": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-1O+4fWvOIwf98iHraGWxD1lnjK67scbpKyWxEaILLIU=",
+        "type": "file",
+        "url": "https://github.com/Vineflower/vineflower/releases/download/1.11.2/vineflower-1.11.2.jar"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/Vineflower/vineflower/releases/download/1.11.2/vineflower-1.11.2.jar"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
