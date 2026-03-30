@@ -6,6 +6,7 @@
 
 {
   imports = [
+    ../hardware-configs/vindruva.nix
     ../modules/basic-utils.nix
     ../modules/audio.nix
     ../modules/bluetooth.nix

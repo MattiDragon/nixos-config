@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ../hardware-configs/nixos-vm.nix
     ../modules/basic-utils.nix
     ../modules/boot/systemd.nix
   ];

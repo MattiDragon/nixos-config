@@ -23,7 +23,6 @@
       nixosConfigurations = {
         "vindruva" = nixpkgs.lib.nixosSystem {
           modules = [
-            ./hardware-configuration.nix
             ./configuration.nix
             ./hosts/vindruva.nix
             inputs.minegrub-world-sel-theme.nixosModules.default
@@ -33,7 +32,6 @@
 
         "nixos-vm" = nixpkgs.lib.nixosSystem {
           modules = [
-            ./hardware-configuration.nix
             ./configuration.nix
             ./hosts/nixos-vm.nix
           ];
