@@ -11,9 +11,6 @@
     custom.desktop.graphics = lib.mkOption { type = lib.types.str; };
   };
 
-  # Configure console keymap
-  console.keyMap = "fi";
-
   config = lib.mkIf config.custom.desktop.enable (
     let
       desktop-config = config.custom.desktop;
@@ -35,6 +32,9 @@
       };
 
       services.xserver.videoDrivers = [ ] ++ lib.optionals nvidia [ "nvidia" ];
+
+      # Configure console keymap
+      console.keyMap = "fi";
 
       # Graphics setup
       hardware.graphics = {
