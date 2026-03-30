@@ -1,110 +1,129 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+
 {
   options = {
     custom.desktop.enable = lib.mkEnableOption "";
     custom.desktop.graphics = lib.mkOption { type = lib.types.str; };
   };
 
-  config = lib.mkIf config.custom.desktop.enable (let
-    desktop-config = config.custom.desktop;
-    nvidia = (desktop-config.graphics == "nvidia");
-  in {
-    ## Desktop Environment ##
-    # Enable X11 in case Wayland breaks
-    services.xserver.enable = true;
+  # Configure console keymap
+  console.keyMap = "fi";
 
-    # Enable the KDE Plasma Desktop Environment.
-    services.displayManager.sddm.enable = true;
-    services.desktopManager.plasma6.enable = true;
+  config = lib.mkIf config.custom.desktop.enable (
+    let
+      desktop-config = config.custom.desktop;
+      nvidia = (desktop-config.graphics == "nvidia");
+    in
+    {
+      ## Desktop Environment ##
+      # Enable X11 in case Wayland breaks
+      services.xserver.enable = true;
 
-    # Configure keymap in X11
-    services.xserver.xkb = {
-      layout = "fi";
-      variant = "";
-    };
+      # Enable the KDE Plasma Desktop Environment.
+      services.displayManager.sddm.enable = true;
+      services.desktopManager.plasma6.enable = true;
 
-    services.xserver.videoDrivers = [] ++ lib.optionals nvidia ["nvidia"];
+      # Configure keymap in X11
+      services.xserver.xkb = {
+        layout = "fi";
+        variant = "";
+      };
 
-    # Graphics setup
-    hardware.graphics = {
-      enable = true;
-    };
+      services.xserver.videoDrivers = [ ] ++ lib.optionals nvidia [ "nvidia" ];
 
-    hardware.nvidia = lib.mkIf nvidia {
-      modesetting.enable = true;
-      # Fixes issues with sleep
-      powerManagement.enable = true;
-      powerManagement.finegrained = false;
+      # Graphics setup
+      hardware.graphics = {
+        enable = true;
+      };
 
-      open = true;
-      nvidiaSettings = true;
+      hardware.nvidia = lib.mkIf nvidia {
+        modesetting.enable = true;
+        # Fixes issues with sleep
+        powerManagement.enable = true;
+        powerManagement.finegrained = false;
 
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-    };
+        open = true;
+        nvidiaSettings = true;
 
-    ## Printing ##
-    # Enable CUPS to print documents.
-    services.printing.enable = true;
-    services.printing.drivers = with pkgs; [
-      cups-filters
-      cups-browsed
-      hplip
-    ];
-    # Needed for CUPS
-    services.avahi = {
-      enable = true;
-      nssmdns4 = true;
-      openFirewall = true;
-    };
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+      };
 
-    ## Desktop Apps ##
-    programs.firefox = {
-      enable = true;
-      nativeMessagingHosts.packages = [ pkgs.firefoxpwa ];
-    };
+      ## Printing ##
+      # Enable CUPS to print documents.
+      services.printing.enable = true;
+      services.printing.drivers = with pkgs; [
+        cups-filters
+        cups-browsed
+        hplip
+      ];
+      # Needed for CUPS
+      services.avahi = {
+        enable = true;
+        nssmdns4 = true;
+        openFirewall = true;
+      };
 
-    programs.steam = {
-      enable = true;
-      dedicatedServer.openFirewall = true;
-      localNetworkGameTransfers.openFirewall = true;
-      remotePlay.openFirewall = true;
-    };
-    hardware.steam-hardware.enable = true;
+      ## Desktop Apps ##
+      programs.firefox = {
+        enable = true;
+        nativeMessagingHosts.packages = [ pkgs.firefoxpwa ];
+      };
 
-    programs.kdeconnect.enable = true;
+      programs.steam = {
+        enable = true;
+        dedicatedServer.openFirewall = true;
+        localNetworkGameTransfers.openFirewall = true;
+        remotePlay.openFirewall = true;
+      };
+      hardware.steam-hardware.enable = true;
 
-    programs.wireshark.enable = true;
-    programs.wireshark.package = pkgs.wireshark;
+      programs.kdeconnect.enable = true;
 
-    services.flatpak.enable = true;
+      programs.wireshark.enable = true;
+      programs.wireshark.package = pkgs.wireshark;
 
-    environment.systemPackages = with pkgs; [
-      # Yubikey
-      yubioath-flutter
-      yubikey-manager
+      services.flatpak.enable = true;
 
-      # Editors
-      vscode.fhs
-      jetbrains-toolbox
+      environment.systemPackages = with pkgs; [
+        # Yubikey
+        yubioath-flutter
+        yubikey-manager
 
-      discord
-      zoom-us
+        # Editors
+        vscode.fhs
+        jetbrains-toolbox
 
-      # Games
-      prismlauncher
-      r2modman
+        discord
+        zoom-us
 
-      # Graphics
-      gimp
-      aseprite
-      blender
-      blockbench
+        # Games
+        (prismlauncher.override {
+          additionalLibs = [
+            libxt
+            libxtst
+            libxkbcommon
+          ];
+        })
+        waywall # MC wrapper for speedrunning
+        r2modman
 
-      # Misc
-      obsidian
-      kdePackages.krdc # Remote desktop client
-      nil # Nix LS
-      firefoxpwa # Needed for PWA support in firefox
-    ];
-  });
+        # Graphics
+        gimp
+        aseprite
+        blender
+        blockbench
+
+        # Misc
+        obsidian
+        kdePackages.krdc # Remote desktop client
+        nil # Nix LS
+        firefoxpwa # Needed for PWA support in firefox
+      ];
+    }
+  );
 }

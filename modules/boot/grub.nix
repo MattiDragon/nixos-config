@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ ... }:
 {
   # Bootloader.
   boot.loader = {
@@ -13,7 +13,7 @@
 
       minegrub-world-sel = {
         enable = true;
-        customIcons = [];
+        customIcons = [ ];
       };
     };
   };

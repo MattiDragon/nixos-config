@@ -1,8 +1,8 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -34,14 +34,15 @@
     firewall.allowedUDPPorts = [ 51820 ];
   };
 
-  # Configure console keymap
-  console.keyMap = "fi";
-
   # Define a user account
   users.users.matti = {
     isNormalUser = true;
     description = "Matti";
-    extraGroups = [ "networkmanager" "wheel" "wireshark" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "wireshark"
+    ];
     packages = with pkgs; [
       kdePackages.kate
       kdePackages.kcalc
@@ -54,7 +55,12 @@
   fileSystems."/mnt/windows" = {
     device = "/dev/disk/by-uuid/4CDA18FCDA18E3CC";
     fsType = "ntfs";
-    options = [ "rw" "uid=1000" "gid=100" "nofail" ];
+    options = [
+      "rw"
+      "uid=1000"
+      "gid=100"
+      "nofail"
+    ];
   };
 
   # RGB setup
@@ -72,15 +78,13 @@
   hardware.ckb-next.enable = true;
   hardware.ckb-next.package = pkgs.ckb-next;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     v4l-utils
-    (makeAutostartItem { name = "ckb-next"; package = pkgs.ckb-next; })
+    (makeAutostartItem {
+      name = "ckb-next";
+      package = pkgs.ckb-next;
+    })
   ];
-
-  # Enable direnv
-#   programs.bash.interactiveShellInit = ''if [ ! -e /run/.toolboxenv ]; then eval "$(direnv hook bash)"; fi'';
 
   # SSH
   services.openssh.enable = true;

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -7,7 +7,6 @@
   ];
 
   networking.hostName = "nixos-vm";
-
 
   networking.networkmanager.enable = true;
 
@@ -18,7 +17,10 @@
   users.users.matti = {
     isNormalUser = true;
     description = "Matti";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       jetbrains.jdk
       jetbrains.idea
@@ -39,8 +41,6 @@
     wakeonlan
     nodejs
   ];
-
-  programs.bash.interactiveShellInit = ''eval "$(direnv hook bash)"'';
 
   # Enable the OpenSSH
   services.openssh = {

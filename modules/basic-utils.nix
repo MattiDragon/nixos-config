@@ -1,9 +1,11 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    wget dig
+    wget
+    dig
     pciutils
-    zip unzip
+    zip
+    unzip
     tree
     htop
 
