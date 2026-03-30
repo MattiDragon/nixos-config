@@ -15,10 +15,19 @@
       url = "github:MattiDragon/vineflower-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs:
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
     {
       nixosConfigurations = {
         "vindruva" = nixpkgs.lib.nixosSystem {
@@ -36,6 +45,17 @@
             ./hosts/nixos-vm.nix
           ];
           specialArgs = { inherit inputs; };
+        };
+      };
+
+      homeConfigurations = {
+        "matti-desktop" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [ ./home.nix ];
+        };
+        "matti-headless" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [ ./home.nix ];
         };
       };
     };
