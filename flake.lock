@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771852784,
-        "narHash": "sha256-uZqQdjzEhv9VbuP7CXgptYYGznymVG3zWScxfKQsdc0=",
+        "lastModified": 1773262192,
+        "narHash": "sha256-+RewB4A+eIW7jyNWEoTEVkYQeDx3HhfTwuEyaicUIgI=",
         "owner": "MattiDragon",
         "repo": "fabric-cli-flake",
-        "rev": "a37735cde71ae92c070681f34820d161e713922c",
+        "rev": "38d0acd04b90caffa49e8c0827f7bdbf1c4f94aa",
         "type": "github"
       },
       "original": {
@@ -27,11 +27,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770377501,
-        "narHash": "sha256-pNRReDfR36MZd3X/zsT+qNzGtLvmg41mgjdiM/Rxtd8=",
+        "lastModified": 1774780255,
+        "narHash": "sha256-BA3CnfTRotuTfGobZxwwJlLEVObgKdhbn4L6e91P8Qw=",
         "owner": "Lxtharia",
         "repo": "minegrub-world-sel-theme",
-        "rev": "0527bf0bdd0bcad46f228e35ee6cf133cb436aec",
+        "rev": "5cedf341a44311669508732be50f0387e47d11c1",
         "type": "github"
       },
       "original": {
@@ -42,11 +42,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1771369470,
-        "narHash": "sha256-0NBlEBKkN3lufyvFegY4TYv5mCNHbi5OmBDrzihbBMQ=",
+        "lastModified": 1774709303,
+        "narHash": "sha256-D3Q07BbIA2KnTcSXIqqu9P586uWxN74zNoCH3h2ESHg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0182a361324364ae3f436a63005877674cf45efb",
+        "rev": "8110df5ad7abf5d4c0f6fb0f8f978390e77f9685",
         "type": "github"
       },
       "original": {
