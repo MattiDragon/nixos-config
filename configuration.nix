@@ -2,7 +2,7 @@
 
 {
   imports = [
-    modules/desktop.nix
+    ./nixos/modules/desktop.nix
   ];
 
   # Nix config

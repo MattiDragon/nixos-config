@@ -44,11 +44,6 @@
       "wheel"
       "wireshark"
     ];
-    packages = with pkgs; [
-      kdePackages.kate
-      kdePackages.kcalc
-      kdePackages.qtmultimedia
-    ];
   };
 
   # Mount windows filesystem

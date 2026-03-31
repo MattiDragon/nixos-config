@@ -33,7 +33,7 @@
         "vindruva" = nixpkgs.lib.nixosSystem {
           modules = [
             ./configuration.nix
-            ./hosts/vindruva.nix
+            ./nixos/hosts/vindruva.nix
             inputs.minegrub-world-sel-theme.nixosModules.default
           ];
           specialArgs = { inherit inputs; };
@@ -42,21 +42,31 @@
         "nixos-vm" = nixpkgs.lib.nixosSystem {
           modules = [
             ./configuration.nix
-            ./hosts/nixos-vm.nix
+            ./nixos/hosts/nixos-vm.nix
           ];
           specialArgs = { inherit inputs; };
         };
       };
 
-      homeConfigurations = {
-        "matti-desktop" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          modules = [ ./home.nix ];
+      homeConfigurations =
+        let
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
+          };
+        in
+        {
+          "matti-desktop" = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            modules = [
+              ./home.nix
+              ./home-manager/desktop.nix
+            ];
+          };
+          "matti-headless" = home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            modules = [ ./home.nix ];
+          };
         };
-        "matti-headless" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          modules = [ ./home.nix ];
-        };
-      };
     };
 }
