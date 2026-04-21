@@ -8,6 +8,7 @@
     unzip
     tree
     htop
+    file
 
     git
     git-lfs

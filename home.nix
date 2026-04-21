@@ -6,8 +6,9 @@
   home.stateVersion = "25.11";
 
   programs.home-manager.enable = true;
+  programs.micro.enable = true;
 
-  home.packages = with pkgs; [
-    micro
-  ];
+  home.sessionVariables = {
+    EDITOR = "micro";
+  };
 }
