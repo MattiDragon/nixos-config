@@ -19,6 +19,10 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+    };
+    import-tree.url = "github:vic/import-tree";
   };
 
   outputs =
@@ -26,47 +30,50 @@
       self,
       nixpkgs,
       home-manager,
+      flake-parts,
+      import-tree,
       ...
     }@inputs:
-    {
-      nixosConfigurations = {
-        "vindruva" = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./configuration.nix
-            ./nixos/hosts/vindruva.nix
-            inputs.minegrub-world-sel-theme.nixosModules.default
-          ];
-          specialArgs = { inherit inputs; };
-        };
+    flake-parts.lib.mkFlake { inherit inputs; } (import-tree ./modules);
+  # {
+  #   nixosConfigurations = {
+  #     "vindruva" = nixpkgs.lib.nixosSystem {
+  #       modules = [
+  #         ./configuration.nix
+  #         ./nixos/hosts/vindruva.nix
+  #         inputs.minegrub-world-sel-theme.nixosModules.default
+  #       ];
+  #       specialArgs = { inherit inputs; };
+  #     };
 
-        "nixos-vm" = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./configuration.nix
-            ./nixos/hosts/nixos-vm.nix
-          ];
-          specialArgs = { inherit inputs; };
-        };
-      };
+  #     "nixos-vm" = nixpkgs.lib.nixosSystem {
+  #       modules = [
+  #         ./configuration.nix
+  #         ./nixos/hosts/nixos-vm.nix
+  #       ];
+  #       specialArgs = { inherit inputs; };
+  #     };
+  #   };
 
-      homeConfigurations =
-        let
-          pkgs = import nixpkgs {
-            system = "x86_64-linux";
-            config.allowUnfree = true;
-          };
-        in
-        {
-          "matti-desktop" = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            modules = [
-              ./home.nix
-              ./home-manager/desktop.nix
-            ];
-          };
-          "matti-headless" = home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            modules = [ ./home.nix ];
-          };
-        };
-    };
+  #   homeConfigurations =
+  #     let
+  #       pkgs = import nixpkgs {
+  #         system = "x86_64-linux";
+  #         config.allowUnfree = true;
+  #       };
+  #     in
+  #     {
+  #       "matti-desktop" = home-manager.lib.homeManagerConfiguration {
+  #         inherit pkgs;
+  #         modules = [
+  #           ./home.nix
+  #           ./home-manager/desktop.nix
+  #         ];
+  #       };
+  #       "matti-headless" = home-manager.lib.homeManagerConfiguration {
+  #         inherit pkgs;
+  #         modules = [ ./home.nix ];
+  #       };
+  #     };
+  # };
 }
