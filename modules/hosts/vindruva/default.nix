@@ -1,15 +1,17 @@
 { inputs, config, ... }:
 {
   flake.modules.nixos.vindruva =
-    { inputs, pkgs, ... }:
+    { inputs, pkgs, lib, ... }:
     {
-      imports = with config.flake.modules.nixos; [
-        core
-        nvidia
-        desktop-kde
-        user-matti
-        ../../_hardware-configs/vindruva.nix
-      ];
+      imports =
+        with config.flake.modules.nixos;
+        [
+          core
+          nvidia
+          user-matti
+          desktop-kde
+          ../../_hardware-configs/vindruva.nix
+        ];
 
       home-manager.users.matti.imports = with config.flake.modules.homeManager; [
         core
@@ -25,6 +27,16 @@
       # Deal with windows time
       # TODO: change in windows and remove
       time.hardwareClockInLocalTime = true;
+
+      specialisation = with config.flake.modules; {
+        niri.configuration = {
+          system.nixos.tags = [ "niri" ];
+          imports = [ nixos.desktop-niri ];
+          home-manager.users.matti.imports = [ homeManager.desktop-niri ];
+
+          services.desktopManager.plasma6.enable = lib.mkForce false;
+        };
+      };
     };
 
   flake.nixosConfigurations.vindruva = inputs.nixpkgs.lib.nixosSystem {
