@@ -3,6 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     minegrub-world-sel-theme = {
       url = "github:Lxtharia/minegrub-world-sel-theme";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,10 +20,11 @@
       url = "github:MattiDragon/vineflower-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager = {
-      url = "github:nix-community/home-manager/master";
+    dolphin-patch = {
+      url = "github:rumboon/dolphin-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };
@@ -35,45 +41,4 @@
       ...
     }@inputs:
     flake-parts.lib.mkFlake { inherit inputs; } (import-tree ./modules);
-  # {
-  #   nixosConfigurations = {
-  #     "vindruva" = nixpkgs.lib.nixosSystem {
-  #       modules = [
-  #         ./configuration.nix
-  #         ./nixos/hosts/vindruva.nix
-  #         inputs.minegrub-world-sel-theme.nixosModules.default
-  #       ];
-  #       specialArgs = { inherit inputs; };
-  #     };
-
-  #     "nixos-vm" = nixpkgs.lib.nixosSystem {
-  #       modules = [
-  #         ./configuration.nix
-  #         ./nixos/hosts/nixos-vm.nix
-  #       ];
-  #       specialArgs = { inherit inputs; };
-  #     };
-  #   };
-
-  #   homeConfigurations =
-  #     let
-  #       pkgs = import nixpkgs {
-  #         system = "x86_64-linux";
-  #         config.allowUnfree = true;
-  #       };
-  #     in
-  #     {
-  #       "matti-desktop" = home-manager.lib.homeManagerConfiguration {
-  #         inherit pkgs;
-  #         modules = [
-  #           ./home.nix
-  #           ./home-manager/desktop.nix
-  #         ];
-  #       };
-  #       "matti-headless" = home-manager.lib.homeManagerConfiguration {
-  #         inherit pkgs;
-  #         modules = [ ./home.nix ];
-  #       };
-  #     };
-  # };
 }

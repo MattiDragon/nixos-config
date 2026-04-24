@@ -10,7 +10,7 @@
       programs.git.lfs.enable = true;
     };
 
-  flake.modules.homeManager.matti =
+  flake.modules.homeManager.user-matti =
     { ... }:
     {
       programs.git = {

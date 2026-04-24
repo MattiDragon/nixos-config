@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "dolphin-patch": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775943689,
+        "narHash": "sha256-0XBCoR1L5gYmh8VqZu0HcHsL4GeGXQMC0f3ARshf/rk=",
+        "owner": "rumboon",
+        "repo": "dolphin-overlay",
+        "rev": "c32758737a0cb02d0bf380753d11df1b8537a944",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rumboon",
+        "repo": "dolphin-overlay",
+        "type": "github"
+      }
+    },
     "fabric-cli": {
       "inputs": {
         "nixpkgs": [
@@ -127,6 +147,7 @@
     },
     "root": {
       "inputs": {
+        "dolphin-patch": "dolphin-patch",
         "fabric-cli": "fabric-cli",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",

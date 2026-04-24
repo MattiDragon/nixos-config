@@ -2,7 +2,6 @@
   flake.modules.nixos.desktop =
     { ... }:
     {
-      services.displayManager.sddm.enable = true;
       hardware.graphics.enable = true;
 
       console.keyMap = "fi";
@@ -12,6 +11,7 @@
         xkb = {
           layout = "fi";
           variant = "";
+          options = "caps:none";
         };
       };
     };

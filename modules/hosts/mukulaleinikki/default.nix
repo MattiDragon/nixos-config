@@ -27,7 +27,12 @@
         boot = "grub";
       };
 
-      networking.hostName = "mukulaleinikka";
+      # Portable install, we don't want to accidentally
+      # grab other OSs from the host system
+      boot.loader.grub.useOSProber = lib.mkForce false;
+      boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
+
+      networking.hostName = "mukulaleinikki";
     };
 
   flake.nixosConfigurations.mukulaleinikki = inputs.nixpkgs.lib.nixosSystem {
