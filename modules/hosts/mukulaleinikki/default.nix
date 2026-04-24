@@ -21,10 +21,14 @@
         desktop
         user-matti
         desktop-niri
+        {
+          custom.desktop-wallpaper = ./desktop-bg.jpeg;
+        }
       ];
 
       custom = {
         boot = "grub";
+        login-wallpaper = ./login-bg.jpeg;
       };
 
       # Portable install, we don't want to accidentally
