@@ -9,16 +9,11 @@ input {
     }
 
     touchpad {
-        // off
         tap
-        // dwt
-        // dwtp
-        // drag false
-        // drag-lock
-        // natural-scroll
         scroll-method "two-finger"
-        // accel-speed 0.2
-        // accel-profile "flat"
+        accel-speed 0.6
+        accel-profile "flat"
+        scroll-factor 0.3
         disabled-on-external-mouse
     }
 
@@ -63,7 +58,7 @@ layout {
     // default-column-width {}
 
     focus-ring {
-        width 2
+        width 4
 
         active-color "#00ba22"
         inactive-color "#505050"
@@ -274,3 +269,5 @@ binds {
 
     Mod+Shift+P { power-off-monitors; }
 }
+
+include /-optional=true "host.kdl"

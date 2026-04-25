@@ -68,6 +68,8 @@ wrapperArgs: {
         gtk = {
           enable = true;
           colorScheme = "dark";
+          cursorTheme.name = "breeze_cursors";
+          cursorTheme.size = 24;
           gtk4.colorScheme = "dark";
 
           gtk4.theme = null;

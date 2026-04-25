@@ -2,6 +2,8 @@
   flake.modules.nixos.core =
     { pkgs, ... }:
     {
+      users.users.matti.extraGroups = [ "podman" ];
+
       virtualisation.podman = {
         enable = true;
         dockerCompat = true;

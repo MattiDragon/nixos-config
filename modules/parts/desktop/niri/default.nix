@@ -33,6 +33,7 @@ wrapperArgs: {
     }:
     {
       xdg.configFile."niri/config.kdl".source = ./config.kdl;
+      xdg.configFile."niri/host.kdl" = lib.mkDefault { text = ""; };
 
       xdg.portal = {
         enable = true;

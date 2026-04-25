@@ -23,6 +23,7 @@
         desktop-niri
         {
           custom.desktop-wallpaper = ./desktop-bg.jpeg;
+          xdg.configFile."niri/host.kdl".source = ./niri.kdl;
         }
       ];
 
@@ -34,7 +35,9 @@
       # Portable install, we don't want to accidentally
       # grab other OSs from the host system
       boot.loader.grub.useOSProber = lib.mkForce false;
+      boot.loader.grub.efiInstallAsRemovable = true;
       boot.loader.efi.canTouchEfiVariables = lib.mkForce false;
+      boot.loader.grub.device = "nodev";
 
       networking.hostName = "mukulaleinikki";
     };
