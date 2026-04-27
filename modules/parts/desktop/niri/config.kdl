@@ -11,8 +11,6 @@ input {
     touchpad {
         tap
         scroll-method "two-finger"
-        accel-speed 0.6
-        accel-profile "flat"
         scroll-factor 0.3
         disabled-on-external-mouse
     }
