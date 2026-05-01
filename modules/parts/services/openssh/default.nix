@@ -20,8 +20,18 @@
     };
 
   flake.modules.homeManager.user-matti =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
+    let
+      sshKeyLocation = "${config.xdg.configHome}/ssh_keys";
+    in
     {
+      systemd.user.tmpfiles.rules = [
+        "C+ ${sshKeyLocation}/yubikey_primary - - - - ${./_keys/yubikey_primary}"
+        "C+ ${sshKeyLocation}/yubikey_secondary - - - - ${./_keys/yubikey_secondary}"
+        "z ${sshKeyLocation}/yubikey_primary 0600 matti users"
+        "z ${sshKeyLocation}/yubikey_secondary 0600 matti users"
+      ];
+
       programs.ssh = {
         enable = true;
         enableDefaultConfig = false;
@@ -29,8 +39,8 @@
         matchBlocks =
           let
             identityFile = [
-              "${./_keys/yubikey_primary}"
-              "${./_keys/yubikey_secondary}"
+              "${sshKeyLocation}/yubikey_primary"
+              "${sshKeyLocation}/yubikey_secondary"
             ];
           in
           {
@@ -38,11 +48,13 @@
               hostname = "mattidragon.dev";
               user = "matti";
               inherit identityFile;
+              identityAgent = "none";
             };
             "github.com" = {
               hostname = "github.com";
               user = "matti";
               inherit identityFile;
+              identityAgent = "none";
             };
             "server.yrttimaa" = {
               hostname = "server.yrttimaa";
