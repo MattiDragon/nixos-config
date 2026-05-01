@@ -8,6 +8,7 @@
             libxt
             libxtst
             libxkbcommon
+            libxinerama
           ];
         })
         waywall # MC wrapper for speedrunning

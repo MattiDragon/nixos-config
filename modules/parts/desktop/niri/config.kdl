@@ -91,6 +91,22 @@ window-rule {
     open-floating true
 }
 
+// Bitwarden login popup is a new window for some reason
+window-rule {
+    match app-id=r#"firefox$"# title=r#"^Extension: \(Bitwarden Password Manager\) - Bitwarden — Mozilla Firefox$"#
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"^Minecraft\*? \d+"#
+    open-maximized true
+}
+
+window-rule {
+    match app-id=r#"^waywall$"#
+    open-fullscreen true
+}
+
 binds {
     // = Mod+?
     Mod+Shift+plus { show-hotkey-overlay; }
