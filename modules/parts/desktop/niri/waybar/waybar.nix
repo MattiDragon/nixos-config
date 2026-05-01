@@ -28,6 +28,7 @@
           modules-right = [
             "pulseaudio"
             "network"
+            "tray"
             "clock"
             "custom/power"
           ];
@@ -110,6 +111,11 @@
             format-linked = "⚠ {ifname} (No IP)";
             format-disconnected = "⚠ Disconnected";
             on-click = "alacritty -e nmtui";
+          };
+
+          tray = {
+            spacing = 5;
+            icon-size = 18;
           };
 
           clock = {

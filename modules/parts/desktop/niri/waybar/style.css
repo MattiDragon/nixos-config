@@ -38,7 +38,8 @@ window#waybar {
 #idle_inhibitor,
 #power-profiles-daemon,
 #mpd,
-#custom-power {
+#custom-power,
+#tray {
   padding: 0 10px;
   color: #ffffff;
   border-radius: 10px;
@@ -234,4 +235,8 @@ label:focus {
 
 #privacy-item.audio-out {
   background-color: #0069d4;
+}
+
+#tray {
+  background-color: #011c01;
 }
