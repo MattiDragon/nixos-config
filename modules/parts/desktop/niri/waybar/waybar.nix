@@ -26,6 +26,7 @@
           ];
           modules-center = [ "niri/window" ];
           modules-right = [
+            "idle_inhibitor"
             "pulseaudio"
             "network"
             "tray"
@@ -79,6 +80,14 @@
           temperature = {
             critical-threshold = 80;
             tooltip = false;
+          };
+
+          idle_inhibitor = {
+            format = "{icon}";
+            format-icons = {
+              activated = "";
+              deactivated = "";
+            };
           };
 
           pulseaudio = {
