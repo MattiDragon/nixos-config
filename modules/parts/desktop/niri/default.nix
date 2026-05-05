@@ -32,13 +32,24 @@ wrapperArgs: {
       ...
     }:
     {
+      home.sessionVariables = {
+        GTK_USE_PORTAL = "1";
+      };
+
       xdg.configFile."niri/config.kdl".source = ./config.kdl;
       xdg.configFile."niri/host.kdl" = lib.mkDefault { text = ""; };
 
       xdg.portal = {
         enable = true;
-        extraPortals = [ pkgs.kdePackages.xdg-desktop-portal-kde ];
-        config.common.default = "kde";
+        extraPortals = [
+          pkgs.kdePackages.xdg-desktop-portal-kde
+          pkgs.xdg-desktop-portal-gtk
+          pkgs.xdg-desktop-portal-gnome
+        ];
+        config.common = {
+          default = "kde";
+          "org.freedesktop.impl.portal.ScreenCast" = "gnome";
+        };
       };
 
       programs.alacritty.enable = true; # Super+T in the default setting (terminal)
@@ -62,6 +73,8 @@ wrapperArgs: {
         xwayland-satellite # provides X11 support under niri with autodetection
 
         kdePackages.xdg-desktop-portal-kde
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-gnome
 
         kdePackages.dolphin
         kdePackages.gwenview
