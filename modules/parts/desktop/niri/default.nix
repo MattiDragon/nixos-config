@@ -42,13 +42,11 @@ wrapperArgs: {
       xdg.portal = {
         enable = true;
         extraPortals = [
-          pkgs.kdePackages.xdg-desktop-portal-kde
           pkgs.xdg-desktop-portal-gtk
           pkgs.xdg-desktop-portal-gnome
         ];
         config.common = {
-          default = "kde";
-          "org.freedesktop.impl.portal.ScreenCast" = "gnome";
+          default = "gnome";
         };
       };
 
