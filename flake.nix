@@ -20,10 +20,6 @@
       url = "github:MattiDragon/vineflower-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    dolphin-patch = {
-      url = "github:rumboon/dolphin-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -33,9 +29,6 @@
 
   outputs =
     {
-      self,
-      nixpkgs,
-      home-manager,
       flake-parts,
       import-tree,
       ...

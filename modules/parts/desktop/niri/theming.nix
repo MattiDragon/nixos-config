@@ -7,7 +7,9 @@ wrapperArgs: {
 
       };
       config = {
-        nixpkgs.overlays = [ wrapperArgs.inputs.dolphin-patch.overlays.default ];
+        nixpkgs.overlays = [
+          (import ./_fix-dolphin.nix)
+        ];
         programs.regreet.settings = {
           background.path = "${config.custom.login-wallpaper}";
           background.fit = "Cover";
