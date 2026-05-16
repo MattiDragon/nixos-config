@@ -22,6 +22,7 @@
           desktop
           desktop-niri
           user-matti
+          vindruva
         ];
         custom.desktop-wallpaper = ./desktop-bg.jpeg;
         programs.waybar.settings.main = {
@@ -40,6 +41,8 @@
       # TODO: change in windows and remove
       time.hardwareClockInLocalTime = true;
     };
+
+  flake.modules.homeManager.vindruva = { ... }: { };
 
   flake.nixosConfigurations.vindruva = inputs.nixpkgs.lib.nixosSystem {
     modules = [ config.flake.modules.nixos.vindruva ];
