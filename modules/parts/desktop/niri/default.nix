@@ -10,6 +10,8 @@ wrapperArgs: {
       services.gnome.gnome-keyring.enable = true;
 
       programs.regreet.enable = true;
+      # TODO: remove once nixpkgs auto enables this
+      services.accounts-daemon.enable = true;
 
       programs.gtklock = {
         enable = true;
