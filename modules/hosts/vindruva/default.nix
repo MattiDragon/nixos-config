@@ -12,15 +12,24 @@
         core
         nvidia
         user-matti
-        desktop-kde
+        desktop-niri
         ../../_hardware-configs/vindruva.nix
       ];
 
-      home-manager.users.matti.imports = with config.flake.modules.homeManager; [
-        core
-        desktop
-        user-matti
-      ];
+      home-manager.users.matti = {
+        imports = with config.flake.modules.homeManager; [
+          core
+          desktop
+          desktop-niri
+          user-matti
+        ];
+        custom.desktop-wallpaper = ./desktop-bg.jpeg;
+        programs.waybar.settings.main = {
+          temperature.hwmon-path = "/sys/class/hwmon/hwmon3/temp1_input";
+        };
+      };
+
+      custom.login-wallpaper = ./login-bg.jpeg;
 
       custom = {
         boot = "grub";
@@ -30,23 +39,6 @@
       # Deal with windows time
       # TODO: change in windows and remove
       time.hardwareClockInLocalTime = true;
-
-      specialisation = with config.flake.modules; {
-        niri.configuration = {
-          system.nixos.tags = [ "niri" ];
-          imports = [ nixos.desktop-niri ];
-          custom.login-wallpaper = ./login-bg.jpeg;
-
-          home-manager.users.matti.imports = [ homeManager.desktop-niri ];
-          home-manager.users.matti.custom.desktop-wallpaper = ./desktop-bg.jpeg;
-
-          home-manager.users.matti.programs.waybar.settings.main = {
-            temperature.hwmon-path = "/sys/class/hwmon/hwmon3/temp1_input";
-          };
-
-          services.desktopManager.plasma6.enable = lib.mkForce false;
-        };
-      };
     };
 
   flake.nixosConfigurations.vindruva = inputs.nixpkgs.lib.nixosSystem {
