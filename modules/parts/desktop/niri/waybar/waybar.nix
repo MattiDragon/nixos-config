@@ -130,7 +130,7 @@
           clock = {
             format = "{0:%H:%M:%S}  {0:%d/%m/%Y}";
             tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-            #format-alt = "";
+            interval = 1;
           };
 
           "custom/power" = {

@@ -40,6 +40,10 @@
           home-manager.users.matti.imports = [ homeManager.desktop-niri ];
           home-manager.users.matti.custom.desktop-wallpaper = ./desktop-bg.jpeg;
 
+          home-manager.users.matti.programs.waybar.settings.main = {
+            temperature.hwmon-path = "/sys/class/hwmon/hwmon3/temp1_input";
+          };
+
           services.desktopManager.plasma6.enable = lib.mkForce false;
         };
       };
