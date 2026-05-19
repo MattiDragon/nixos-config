@@ -23,6 +23,7 @@
           desktop-niri
           user-matti
           vindruva
+          game-dev
         ];
         custom.desktop-wallpaper = ./desktop-bg.jpeg;
         programs.waybar.settings.main = {
