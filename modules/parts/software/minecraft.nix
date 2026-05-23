@@ -4,6 +4,18 @@
     {
       home.packages = with pkgs; [
         (prismlauncher.override {
+          glfw3-minecraft =
+            let
+              patched-glfw = pkgs.fetchFromGitHub {
+                owner = "Moraxyc";
+                repo = "nixpkgs";
+                rev = "lwjgl-glfw";
+                sha256 = "sha256-L295Y5AgtyTTaMlTAkKdo/NNwD2bZR3TsL9tSLJvqIk=";
+              };
+            in
+            pkgs.callPackage "${patched-glfw}/pkgs/by-name/gl/glfw3-minecraft/package.nix" {
+              glfw3 = pkgs.callPackage "${patched-glfw}/pkgs/by-name/gl/glfw3/package.nix" { };
+            };
           additionalLibs = [
             libxt
             libxtst
