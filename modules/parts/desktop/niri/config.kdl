@@ -107,6 +107,13 @@ window-rule {
     open-fullscreen true
 }
 
+window-rule {
+    match app-id=r#"org.kde.kcalc"#
+    open-floating true
+    default-column-width { fixed 350; }
+    default-window-height { fixed 400; }
+}
+
 binds {
     // = Mod+?
     Mod+Shift+plus { show-hotkey-overlay; }
