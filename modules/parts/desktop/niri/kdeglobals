@@ -1,2 +1,5 @@
 [UiSettings]
 ColorScheme=BreezeDark
+
+[General]
+TerminalApplication=alacritty
