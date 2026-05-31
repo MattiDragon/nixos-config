@@ -114,6 +114,20 @@ window-rule {
     default-window-height { fixed 400; }
 }
 
+window-rule {
+    match app-id=r#"zoom"#
+    match app-id=r#"com.obsproject.Studio"#
+
+    block-out-from "screencast"
+}
+
+window-rule {
+    match app-id=r#"zoom"# title="Leave meeting panel"
+    match app-id=r#"zoom"# title="annotate_toolbar"
+    
+    open-floating true
+}
+
 binds {
     // = Mod+?
     Mod+Shift+plus { show-hotkey-overlay; }
