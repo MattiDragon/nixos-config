@@ -1,9 +1,10 @@
 {
   flake.modules.homeManager.desktop =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
       home.packages = with pkgs; [
         (prismlauncher.override {
+          # Manually apply https://github.com/NixOS/nixpkgs/pull/509002
           glfw3-minecraft =
             let
               patched-glfw = pkgs.fetchFromGitHub {
@@ -30,19 +31,5 @@
         vineflower
         fabricmc-cli
       ];
-
-      programs.obs-studio = {
-        enable = true;
-
-        package = (
-          pkgs.obs-studio.override {
-            cudaSupport = true;
-          }
-        );
-
-        plugins = with pkgs.obs-studio-plugins; [
-          obs-pipewire-audio-capture
-        ];
-      };
     };
 }
