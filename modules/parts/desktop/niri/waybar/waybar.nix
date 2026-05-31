@@ -141,7 +141,7 @@
               lock = "gtklock -d";
               shutdown = "shutdown now";
               reboot = "reboot";
-              suspend = "suspend";
+              suspend = "gtklock -d && sleep 1 && systemctl suspend";
             };
           };
         };
