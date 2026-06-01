@@ -13,6 +13,7 @@
         nvidia
         user-matti
         desktop-niri
+        desktop-waybar
         ../../_hardware-configs/mukulaleinikki.nix
       ];
 
@@ -21,6 +22,7 @@
         desktop
         user-matti
         desktop-niri
+        desktop-waybar
         {
           custom.desktop-wallpaper = ./desktop-bg.jpeg;
           xdg.configFile."niri/host.kdl".source = ./niri.kdl;

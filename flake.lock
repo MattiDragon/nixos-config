@@ -125,6 +125,27 @@
         "type": "github"
       }
     },
+    "noctalia": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1780340386,
+        "narHash": "sha256-E6+zDnH5Ah7f2Qy53Sh34BUDirtzhmsaz0Oz2a1at0A=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia-shell",
+        "rev": "03ea7f28ae5c46acd3f447d7c2191e5f0077ca5b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "ref": "v5",
+        "repo": "noctalia-shell",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "fabric-cli": "fabric-cli",
@@ -133,6 +154,7 @@
         "import-tree": "import-tree",
         "minegrub-world-sel-theme": "minegrub-world-sel-theme",
         "nixpkgs": "nixpkgs",
+        "noctalia": "noctalia",
         "vineflower": "vineflower"
       }
     },

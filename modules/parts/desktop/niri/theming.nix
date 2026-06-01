@@ -43,39 +43,31 @@ wrapperArgs: {
       ...
     }:
     {
-      options.custom.desktop-wallpaper = lib.mkOption {
-        type = lib.types.path;
+      # Set theme for KDE apps
+      xdg.configFile."kdeglobals".source = ./kdeglobals;
+
+      home.packages = with pkgs; [
+        swaybg # wallpaper
+
+        kdePackages.breeze
+        kdePackages.breeze-icons
+        kdePackages.qt6ct
+      ];
+
+      qt = {
+        enable = true;
+        platformTheme.name = "qt6ct";
+        # TODO: include qt6ct settings here
       };
 
-      config = {
-        # Set theme for KDE apps
-        xdg.configFile."kdeglobals".source = ./kdeglobals;
-        # Set background
-        xdg.configFile."swaybg/background.jpeg".source = config.custom.desktop-wallpaper;
+      gtk = {
+        enable = true;
+        colorScheme = "dark";
+        cursorTheme.name = "breeze_cursors";
+        cursorTheme.size = 24;
+        gtk4.colorScheme = "dark";
 
-        home.packages = with pkgs; [
-          swaybg # wallpaper
-
-          kdePackages.breeze
-          kdePackages.breeze-icons
-          kdePackages.qt6ct
-        ];
-
-        qt = {
-          enable = true;
-          platformTheme.name = "qt6ct";
-          # TODO: include qt6ct settings here
-        };
-
-        gtk = {
-          enable = true;
-          colorScheme = "dark";
-          cursorTheme.name = "breeze_cursors";
-          cursorTheme.size = 24;
-          gtk4.colorScheme = "dark";
-
-          gtk4.theme = null;
-        };
+        gtk4.theme = null;
       };
     };
 }

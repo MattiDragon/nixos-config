@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.desktop-niri =
+  flake.modules.nixos.desktop-waybar =
     { pkgs, ... }:
     {
       fonts.packages = with pkgs; [
@@ -7,7 +7,7 @@
       ];
     };
 
-  flake.modules.homeManager.desktop-niri =
+  flake.modules.homeManager.desktop-waybar =
     { ... }:
     {
       programs.waybar = {

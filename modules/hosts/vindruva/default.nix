@@ -13,6 +13,7 @@
         nvidia
         user-matti
         desktop-niri
+        desktop-noctalia
         ../../_hardware-configs/vindruva.nix
       ];
 
@@ -21,6 +22,7 @@
           core
           desktop
           desktop-niri
+          desktop-noctalia
           user-matti
           vindruva
           game-dev

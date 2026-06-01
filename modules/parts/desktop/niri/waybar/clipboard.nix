@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.desktop-niri =
+  flake.modules.homeManager.desktop-waybar =
     { pkgs, ... }:
     {
       services.wl-clip-persist.enable = true;
