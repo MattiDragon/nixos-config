@@ -3,8 +3,8 @@ spawn-at-startup "noctalia"
 binds {
     Mod+Space hotkey-overlay-title="Run an Application" { spawn-sh "noctalia msg panel-toggle launcher"; }
     Mod+V hotkey-overlay-title="Clipboard Manager" { spawn-sh "noctalia msg panel-toggle clipboard"; }
-
-    //Super+Alt+L hotkey-overlay-title="Lock the Screen: gtklock" { spawn "gtklock"; }
+    Mod+Return { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+L { spawn-sh "noctalia msg session lock"; }
 
     // Audio control
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "noctalia msg volume-up"; }
@@ -21,4 +21,21 @@ binds {
 
     XF86MonBrightnessUp allow-when-locked=true { spawn "noctalia msg brightness-up"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "noctalia msg brightness-down"; }
+}
+
+layout {
+    struts {
+        top 0
+        bottom -8
+    }
+}
+
+window-rule {
+  geometry-corner-radius 20
+
+  clip-to-geometry true
+}
+
+debug {
+  honor-xdg-activation-with-invalid-serial
 }

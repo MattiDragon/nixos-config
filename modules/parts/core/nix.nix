@@ -7,6 +7,7 @@
       nixpkgs.overlays = [
         inputs.fabric-cli.overlays.default
         inputs.vineflower.overlays.default
+        inputs.noctalia.overlays.default
       ];
 
       system.stateVersion = "25.05";
