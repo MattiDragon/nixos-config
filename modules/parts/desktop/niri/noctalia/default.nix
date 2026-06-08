@@ -20,6 +20,24 @@
         include "noctalia.kdl"
       '';
 
+      # Used to apply noctalia to firefox
+      home.packages = with pkgs; [
+        pywalfox-native
+      ];
+      home.file.".mozilla/native-messaging-hosts/pywalfox.json".source =
+        let
+          manifest = derivation {
+            system = "x86_64-linux";
+            builder = "/bin/sh";
+            name = "pywalfox-manifest";
+            args = [
+              "-c"
+              "${pkgs.pywalfox-native}/bin/pywalfox install --manifest-path $out"
+            ];
+          };
+        in
+        "${manifest}/pywalfox.json";
+
       programs.noctalia = {
         enable = true;
 
