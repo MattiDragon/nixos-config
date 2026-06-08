@@ -8,6 +8,7 @@ wrapperArgs: {
 
       programs.niri.enable = true;
       services.gnome.gnome-keyring.enable = true;
+      security.pam.services.login.kwallet.enable = true;
 
       programs.regreet.enable = true;
       # TODO: remove once nixpkgs auto enables this
@@ -24,6 +25,16 @@ wrapperArgs: {
 
       # Needed for udiskie
       services.udisks2.enable = true;
+
+      # Needed for dolphin to access gnome-keyring
+      services.dbus.packages = with pkgs; [
+        kdePackages.kio-extras
+        kdePackages.kio
+      ];
+
+      environment.systemPackages = with pkgs; [
+        kdePackages.kwallet
+      ];
     };
 
   flake.modules.homeManager.desktop-niri =
@@ -50,6 +61,11 @@ wrapperArgs: {
 
         xdg.configFile."niri/config.kdl".source = ./config.kdl;
         xdg.configFile."niri/extra.kdl".text = config.custom.niri-config;
+
+        xdg.configFile."kwalletrc".text = ''
+          [KSecretD]
+          Enabled=false
+        '';
 
         xdg.portal = {
           enable = true;
