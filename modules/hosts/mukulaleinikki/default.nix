@@ -13,7 +13,7 @@
         nvidia
         user-matti
         desktop-niri
-        desktop-waybar
+        desktop-noctalia
         ../../_hardware-configs/mukulaleinikki.nix
       ];
 
@@ -22,10 +22,11 @@
         desktop
         user-matti
         desktop-niri
-        desktop-waybar
+        desktop-noctalia
         {
           custom.desktop-wallpaper = ./desktop-bg.jpeg;
-          xdg.configFile."niri/host.kdl".source = ./niri.kdl;
+          custom.niri-config = ''include "mukula.kdl"'';
+          xdg.configFile."niri/mukula.kdl".source = ./niri.kdl;
         }
       ];
 
