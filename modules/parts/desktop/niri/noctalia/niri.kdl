@@ -26,7 +26,7 @@ binds {
 layout {
     struts {
         top 0
-        bottom -8
+        bottom 0
     }
 }
 
@@ -34,6 +34,28 @@ window-rule {
   geometry-corner-radius 20
 
   clip-to-geometry true
+}
+
+window-rule {
+  match app-id="Alacritty"
+
+  background-effect {
+    blur true
+    xray false
+  }
+}
+
+layer-rule {
+  match namespace="^noctalia-backdrop"
+  place-within-backdrop true
+}
+
+layer-rule {
+  match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+  background-effect {
+    blur true
+    xray false
+  }
 }
 
 debug {

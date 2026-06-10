@@ -38,6 +38,11 @@
         in
         "${manifest}/pywalfox.json";
 
+      programs.alacritty.settings = {
+        general.import = [ "./themes/noctalia.toml" ];
+        window.opacity = 0.7;
+      };
+
       programs.noctalia = {
         enable = true;
 
@@ -58,7 +63,8 @@
           };
 
           bar.default = {
-            border_width = 2;
+            border_width = 1;
+            background_opacity = 0.5;
             start = [
               "workspaces"
               "spacer_2"
@@ -91,15 +97,30 @@
             { type = "dark_mode"; }
           ];
 
+          notification = {
+            background_opacity = 0.5;
+            offset_x = 5;
+          };
+
+          osd = {
+            background_opacity = 0.5;
+            offset_x = 5;
+          };
+
+          backdrop.enabled = true;
+
           shell = {
             polkit_agent = true;
             settings_show_advanced = true;
             telemetry_enabled = true;
 
+            niri_overview_type_to_launch_enabled = true;
+
             panel = {
               launcher_compact = true;
               open_near_click_control_center = true;
               open_near_click_session = true;
+              control_center_placement = "floating";
               session_placement = "floating";
             };
 
