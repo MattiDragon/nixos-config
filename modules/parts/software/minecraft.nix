@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager.desktop =
-    { pkgs, config, ... }:
+    { pkgs, ... }:
     {
       home.packages = with pkgs; [
         (prismlauncher.override {
@@ -31,5 +31,9 @@
         vineflower
         fabricmc-cli
       ];
+
+      xdg.mimeApps.defaultApplications = {
+        "application/x-modrinth-modpack+zip" = "org.prismlauncher.PrismLauncher.desktop";
+      };
     };
 }

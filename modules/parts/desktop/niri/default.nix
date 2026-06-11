@@ -90,7 +90,41 @@ wrapperArgs: {
 
           kdePackages.dolphin
           kdePackages.gwenview
+          kdePackages.ark
         ];
+
+        xdg.mimeApps.defaultApplications = {
+          # Prism Launcher steals this unless we fix it
+          "application/zip" = "org.kde.ark.desktop";
+
+          # For some reason aseprite takes images for itself
+          # We set all images to gwenview by default
+          "image/avif" = "org.kde.gwenview.desktop";
+          "image/bmp" = "org.kde.gwenview.desktop";
+          "image/gif" = "org.kde.gwenview.desktop";
+          "image/heif" = "org.kde.gwenview.desktop";
+          "image/jpeg" = "org.kde.gwenview.desktop";
+          "image/jxl" = "org.kde.gwenview.desktop";
+          "image/png" = "org.kde.gwenview.desktop";
+          "image/svg+xml" = "org.kde.gwenview.desktop";
+          "image/svg+xml-compressed" = "org.kde.gwenview.desktop";
+          "image/tiff" = "org.kde.gwenview.desktop";
+          "image/webp" = "org.kde.gwenview.desktop";
+          "image/x-eps" = "org.kde.gwenview.desktop";
+          "image/x-ico" = "org.kde.gwenview.desktop";
+          "image/x-icns" = "org.kde.gwenview.desktop";
+          "image/x-portable-bitmap" = "org.kde.gwenview.desktop";
+          "image/x-portable-graymap" = "org.kde.gwenview.desktop";
+          "image/x-portable-pixmap" = "org.kde.gwenview.desktop";
+          "image/x-psd" = "org.kde.gwenview.desktop";
+          "image/x-tga" = "org.kde.gwenview.desktop";
+          "image/x-webp" = "org.kde.gwenview.desktop";
+          "image/x-xbitmap" = "org.kde.gwenview.desktop";
+          "image/x-xcf" = "org.kde.gwenview.desktop";
+          "image/x-xpixmap" = "org.kde.gwenview.desktop";
+          "image/openraster" = "org.kde.gwenview.desktop";
+          "application/x-krita" = "org.kde.gwenview.desktop";
+        };
 
         home.file.".vscode/argv.json".text = ''
           {
