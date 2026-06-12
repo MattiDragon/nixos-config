@@ -50,6 +50,12 @@
           buildInputs = prevAttrs.buildInputs ++ [ pkgs.python314 ];
         });
 
+        customPalettes = {
+          "Matti Green" = (
+            config.lib.file.mkOutOfStoreSymlink /home/matti/Flakes/nixos-config/modules/parts/desktop/niri/noctalia/green-theme.json
+          );
+        };
+
         settings = {
           theme = {
             mode = "dark";
