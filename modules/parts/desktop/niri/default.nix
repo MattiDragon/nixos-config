@@ -91,11 +91,13 @@ wrapperArgs: {
           kdePackages.dolphin
           kdePackages.gwenview
           kdePackages.ark
+          kdePackages.okular
         ];
 
         xdg.mimeApps.defaultApplications = {
           # Prism Launcher steals this unless we fix it
           "application/zip" = "org.kde.ark.desktop";
+          "application/pdf" = "org.kde.okular.desktop";
 
           # For some reason aseprite takes images for itself
           # We set all images to gwenview by default

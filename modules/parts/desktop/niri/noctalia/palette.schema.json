@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mattidragon.dev/noctalia-palette.schema.json",
+  "title": "Noctalia Palette Schema",
+  "description": "A JSON schema for validating Noctalia color palette files.",
+  "type": "object",
+  "properties": {
+    "dark": {
+      "$ref": "#/$defs/palette"
+    },
+    "light": {
+      "$ref": "#/$defs/palette"
+    }
+  },
+  "$defs": {
+    "palette": {
+      "properties": {
+        "mPrimary": { "type": "string", "format": "color" },
+        "mOnPrimary": { "type": "string", "format": "color" },
+        "mSecondary": { "type": "string", "format": "color" },
+        "mOnSecondary": { "type": "string", "format": "color" },
+        "mTertiary": { "type": "string", "format": "color" },
+        "mOnTertiary": { "type": "string", "format": "color" },
+        "mError": { "type": "string", "format": "color" },
+        "mOnError": { "type": "string", "format": "color" },
+        "mSurface": { "type": "string", "format": "color" },
+        "mOnSurface": { "type": "string", "format": "color" },
+        "mSurfaceVariant": { "type": "string", "format": "color" },
+        "mOnSurfaceVariant": { "type": "string", "format": "color" },
+        "mOutline": { "type": "string", "format": "color" },
+        "mShadow": { "type": "string", "format": "color" },
+        "mHover": { "type": "string", "format": "color" },
+        "mOnHover": { "type": "string", "format": "color" },
+        "terminal": {
+          "type": "object",
+          "properties": {
+            "normal": { "$ref": "#/$defs/terminalColors" },
+            "bright": { "$ref": "#/$defs/terminalColors" },
+            "background": { "type": "string", "format": "color" },
+            "foreground": { "type": "string", "format": "color" },
+            "cursor": { "type": "string", "format": "color" },
+            "cursorText": { "type": "string", "format": "color" },
+            "selectionBg": { "type": "string", "format": "color" },
+            "selectionFg": { "type": "string", "format": "color" }
+          }
+        }
+      }
+    },
+    "terminalColors": {
+      "type": "object",
+      "properties": {
+        "black": { "type": "string", "format": "color" },
+        "red": { "type": "string", "format": "color" },
+        "green": { "type": "string", "format": "color" },
+        "yellow": { "type": "string", "format": "color" },
+        "blue": { "type": "string", "format": "color" },
+        "magenta": { "type": "string", "format": "color" },
+        "cyan": { "type": "string", "format": "color" },
+        "white": { "type": "string", "format": "color" }
+      }
+    }
+  }
+}
