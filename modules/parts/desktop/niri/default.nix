@@ -14,15 +14,6 @@ wrapperArgs: {
       # TODO: remove once nixpkgs auto enables this
       services.accounts-daemon.enable = true;
 
-      programs.gtklock = {
-        enable = true;
-        config.main = {
-          start-hidden = true;
-          idle-hide = true;
-          idle-timeout = 60;
-        };
-      };
-
       # Needed for udiskie
       services.udisks2.enable = true;
 
@@ -78,7 +69,7 @@ wrapperArgs: {
           };
         };
 
-        programs.alacritty.enable = true; # Super+T in the default setting (terminal)
+        programs.alacritty.enable = true; # Terminal
 
         services.polkit-gnome.enable = true; # polkit
         home.packages = with pkgs; [
@@ -98,6 +89,9 @@ wrapperArgs: {
           # Prism Launcher steals this unless we fix it
           "application/zip" = "org.kde.ark.desktop";
           "application/pdf" = "org.kde.okular.desktop";
+
+          # For some reason missing by default
+          "inode/mount-point" = "org.kde.dolphin.desktop";
 
           # For some reason aseprite takes images for itself
           # We set all images to gwenview by default

@@ -2,7 +2,14 @@
   flake.modules.nixos.desktop-waybar =
     { pkgs, ... }:
     {
-
+      programs.gtklock = {
+        enable = true;
+        config.main = {
+          start-hidden = true;
+          idle-hide = true;
+          idle-timeout = 60;
+        };
+      };
     };
 
   flake.modules.homeManager.desktop-waybar =
