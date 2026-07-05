@@ -36,12 +36,15 @@
   };
 
   swapDevices = [
-    { device = "/dev/mapper/luks-nixos-swap"; }
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024;
+    }
   ];
 
   boot.initrd.luks.devices = {
     "luks-nixos-main".device = "/dev/disk/by-uuid/34203099-4dc0-4d43-bbdb-1c9c10ee5632";
-    "luks-nixos-swap".device = "/dev/disk/by-uuid/90cc20d0-7592-4bec-a946-289bf56b1a47";
+    # "luks-nixos-swap".device = "/dev/disk/by-uuid/90cc20d0-7592-4bec-a946-289bf56b1a47";
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
