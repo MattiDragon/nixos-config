@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.desktop-waybar =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
       programs.gtklock = {
         enable = true;
@@ -10,6 +10,23 @@
           idle-timeout = 60;
         };
       };
+
+      programs.gtklock.style = ''
+        #window-box {
+        	padding: 32px;
+        	border: 4px solid rgba(0, 0, 0, 0.75);
+        	border-radius: 16px;
+        	background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        window {
+          background-image: url("${config.custom.login-wallpaper}");
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-color: white;
+        }
+      '';
     };
 
   flake.modules.homeManager.desktop-waybar =

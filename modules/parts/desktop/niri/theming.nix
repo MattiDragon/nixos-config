@@ -15,23 +15,6 @@ wrapperArgs: {
           background.fit = "Cover";
           GTK.application_prefer_dark_theme = true;
         };
-
-        programs.gtklock.style = ''
-          #window-box {
-          	padding: 32px;
-          	border: 4px solid rgba(0, 0, 0, 0.75);
-          	border-radius: 16px;
-          	background-color: rgba(0, 0, 0, 0.5);
-          }
-
-          window {
-            background-image: url("${config.custom.login-wallpaper}");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-color: white;
-          }
-        '';
       };
     };
 
