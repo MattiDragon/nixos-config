@@ -7,14 +7,28 @@ wrapperArgs: {
 
       };
       config = {
-        nixpkgs.overlays = [
-        ];
         programs.regreet.settings = {
           background.path = "${config.custom.login-wallpaper}";
           background.fit = "Cover";
           GTK.application_prefer_dark_theme = true;
         };
+
+        services.displayManager.noctalia-greeter.settings = {
+          appearance = {
+            hide_logo = true;
+            wallpaper = {
+              path = "${config.custom.login-wallpaper}";
+              fill_mode = "crop";
+            };
+
+            cursor = {
+              theme = "breeze_cursors";
+              size = 24;
+            };
+          };
+        };
       };
+
     };
 
   flake.modules.homeManager.desktop-niri =

@@ -24,6 +24,10 @@
       url = "github:noctalia-dev/noctalia-shell/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter/main";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     qtengine = {
       url = "github:kossLAN/qtengine";
       inputs.nixpkgs.follows = "nixpkgs";

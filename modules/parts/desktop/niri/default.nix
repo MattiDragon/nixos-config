@@ -10,9 +10,14 @@ wrapperArgs: {
       services.gnome.gnome-keyring.enable = true;
       security.pam.services.login.kwallet.enable = true;
 
-      programs.regreet.enable = true;
-      # TODO: remove once nixpkgs auto enables this
-      services.accounts-daemon.enable = true;
+      # Required for noctalia sync
+      security.polkit.enable = true;
+      security.polkit.enablePkexecWrapper = true;
+
+      services.displayManager.noctalia-greeter = {
+        enable = true;
+        cursorTheme.package = pkgs.kdePackages.breeze-icons;
+      };
 
       # Needed for udiskie
       services.udisks2.enable = true;
