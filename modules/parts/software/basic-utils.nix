@@ -15,7 +15,8 @@
         ffmpeg
       ];
 
-      programs.command-not-found.enable = true;
+      # Broken with flakes without extra work
+      # programs.command-not-found.enable = true;
     };
 
   flake.modules.homeManager.desktop =

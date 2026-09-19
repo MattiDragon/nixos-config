@@ -50,17 +50,28 @@
           buildInputs = prevAttrs.buildInputs ++ [ pkgs.python314 ];
         });
 
-        customPalettes = {
-          "Matti Green" = (
-            config.lib.file.mkOutOfStoreSymlink /home/matti/Flakes/nixos-config/modules/parts/desktop/niri/noctalia/green-theme.json
-          );
-        };
-
         settings = {
           theme = {
             mode = "dark";
-            source = "builtin";
-            builtin = "Catppuccin";
+            source = "community";
+            builtin = "Gruvbox";
+            community_palette = "Cream";
+          };
+
+          theme.templates = {
+            builtin_ids = [
+              "alacritty"
+              "gtk3"
+              "gtk4"
+              "kcolorscheme"
+              "niri"
+              "qt"
+            ];
+            community_ids = [
+              "pywalfox"
+              "obsidian"
+              "vscode"
+            ];
           };
 
           wallpaper = {
@@ -72,11 +83,10 @@
             border_width = 1;
             background_opacity = 0.5;
             start = [
+              "session"
               "workspaces"
-              "spacer_2"
-              "clock"
             ];
-            center = [ "active_window" ];
+            center = [ "clock" ];
             end = [
               "media"
               "tray"
@@ -86,14 +96,19 @@
               "volume"
               "brightness"
               "battery"
-              "session"
             ];
 
             margin_edge = 5;
             margin_ends = 5;
+            margin_opposite_edge = 5;
             thickness = 32;
           };
 
+          control_center.hidden_tabs = [
+            "media"
+            "weather"
+            "calendar"
+          ];
           control_center.shortcuts = [
             { type = "wifi"; }
             { type = "bluetooth"; }
@@ -102,6 +117,30 @@
             { type = "power_profile"; }
             { type = "dark_mode"; }
           ];
+
+          idle = {
+            behavior_order = [
+              "lock"
+              "screen-off"
+              "lock-and-suspend"
+            ];
+
+            behavior.lock = {
+              action = "lock";
+              enabled = true;
+              timeout = 600;
+            };
+            behavior.screen-off = {
+              action = "screen_off";
+              enabled = true;
+              timeout = 660;
+            };
+            behavior.lock-and-suspend = {
+              action = "lock_and_suspend";
+              enabled = true;
+              timeout = 900;
+            };
+          };
 
           notification = {
             background_opacity = 0.5;
@@ -122,14 +161,18 @@
 
             niri_overview_type_to_launch_enabled = true;
 
+            launcher.app_grid = true;
+
             panel = {
               launcher_compact = true;
               open_near_click_control_center = true;
               open_near_click_session = true;
               control_center_placement = "floating";
               session_placement = "floating";
+              transparency_mode = "glass";
             };
 
+            session.grid = true;
             session.actions = [
               {
                 action = "lock";
@@ -165,6 +208,8 @@
             ];
           };
 
+          lockscreen_widgets.enabled = false;
+
           desktop_widgets = {
             schema_version = 1;
             widget_order = [ ];
@@ -178,29 +223,13 @@
             widget = { };
           };
 
-          theme.templates = {
-            builtin_ids = [
-              "alacritty"
-              "gtk3"
-              "gtk4"
-              "kcolorscheme"
-              "niri"
-              "qt"
-            ];
-            community_ids = [
-              "pywalfox"
-              "obsidian"
-              "vscode"
-            ];
-          };
-
           weather.auto_locate = true;
 
           widget = {
             active_window.max_length = 512;
 
             clock = {
-              format = "{:%a %d.%m.%Y\\n%H:%M}";
+              format = "{:%a %d.%m.%Y\\n%H:%M:%S}";
               scale = 1.5;
             };
 
@@ -212,12 +241,6 @@
             };
 
             network.show_label = false;
-
-            spacer_2 = {
-              capsule = true;
-              length = 15;
-              type = "spacer";
-            };
           };
         };
       };

@@ -8,7 +8,6 @@ wrapperArgs: {
       };
       config = {
         nixpkgs.overlays = [
-          (import ./_fix-dolphin.nix)
         ];
         programs.regreet.settings = {
           background.path = "${config.custom.login-wallpaper}";
@@ -29,18 +28,36 @@ wrapperArgs: {
       # Set theme for KDE apps
       xdg.configFile."kdeglobals".source = ./kdeglobals;
 
+      xdg.configFile."qtengine/config.json".text = ''
+        {
+          "theme": {
+            "colorScheme": "${config.home.homeDirectory}/.local/share/color-schemes/noctalia.colors",
+            "iconTheme": "breeze-dark",
+            "style": "breeze"
+          },
+          "misc": {
+            "menusHaveIcons": true,
+            "singleClickActivate": false,
+            "shortcutsForContextMenus": true
+          }
+        }
+      '';
+
       home.packages = with pkgs; [
         swaybg # wallpaper
 
         kdePackages.breeze
         kdePackages.breeze-icons
         kdePackages.qt6ct
+
+        kdePackages.plasma-integration
+
+        wrapperArgs.inputs.qtengine.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
 
       qt = {
         enable = true;
-        platformTheme.name = "qt6ct";
-        # TODO: include qt6ct settings here
+        platformTheme.name = "qtengine";
       };
 
       gtk = {
