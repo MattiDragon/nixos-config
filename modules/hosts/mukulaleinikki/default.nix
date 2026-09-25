@@ -25,8 +25,6 @@
         desktop-noctalia
         {
           custom.desktop-wallpaper = ./desktop-bg.jpeg;
-          custom.niri-config = lib.mkBefore ''include "mukula.kdl"'';
-          xdg.configFile."niri/mukula.kdl".source = ./niri.kdl;
         }
       ];
 
